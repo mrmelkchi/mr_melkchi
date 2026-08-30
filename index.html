@@ -6,82 +6,136 @@
 
 <title>مستر ملک چی | مشاور املاک لاهیجان</title>
 
-<meta name="description"
-content="مستر ملک چی، مشاور املاک در لاهیجان؛ خرید، فروش و اجاره ملک.">
+<meta name="description" content="مستر ملک چی، مشاور املاک در لاهیجان؛ خرید، فروش و اجاره ملک.">
 
 <link rel="stylesheet" href="style.css">
 
 <style>
-.property-list{
+/* ===== فایل های ملکی ===== */
+
+.property-list {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
+  gap:22px;
   margin-top:30px;
 }
 
-.property-card{
-  background:#fff;
+.property-card {
+  background:#171717 !important;
+  color:#eeeeee !important;
+  border:1px solid #333 !important;
   border-radius:18px;
   padding:20px;
-  box-shadow:0 8px 30px rgba(0,0,0,.08);
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  overflow:hidden;
 }
 
-.property-card h3{
-  margin-top:0;
-  font-size:22px;
+.property-card h3 {
+  color:#d9ad4a !important;
+  font-size:23px;
+  margin:0 0 15px;
 }
 
-.property-card p{
-  margin:8px 0;
+.property-card p {
+  color:#eeeeee !important;
   line-height:1.8;
+  margin:7px 0;
 }
 
-.property-price{
+.property-price {
+  color:#d9ad4a !important;
   font-weight:bold;
-  font-size:18px;
-  margin-top:15px;
+  font-size:17px;
 }
 
-.property-features{
+.property-features {
   display:flex;
   flex-wrap:wrap;
   gap:7px;
   margin:15px 0;
 }
 
-.feature{
-  background:#f4f4f4;
+.feature {
+  background:#292929 !important;
+  color:#eeeeee !important;
+  border:1px solid #444;
   padding:5px 10px;
   border-radius:20px;
   font-size:13px;
 }
 
-.property-images{
+.property-images {
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:8px;
-  margin-bottom:15px;
+  margin:-20px -20px 18px;
 }
 
-.property-images img{
+.property-images img {
   width:100%;
-  height:150px;
+  height:160px;
   object-fit:cover;
-  border-radius:12px;
+  display:block;
 }
 
-.loading{
+.loading {
+  color:#eeeeee;
   text-align:center;
   padding:30px;
 }
+
+/* کارت خرید و فروش قابل کلیک */
+
+.sale-card {
+  cursor:pointer;
+  text-decoration:none !important;
+  color:inherit !important;
+  display:block;
+  transition:.2s;
+}
+
+.sale-card:hover {
+  transform:translateY(-4px);
+}
+
+/* دکمه ثبت فایل */
+
+.register-wrap {
+  text-align:center;
+  margin:25px 0;
+}
+
+/* موبایل */
+
+@media(max-width:600px) {
+
+  .property-list {
+    grid-template-columns:1fr;
+  }
+
+  .property-card {
+    padding:17px;
+  }
+
+  .property-images {
+    margin:-17px -17px 15px;
+  }
+
+  .property-images img {
+    height:140px;
+  }
+}
 </style>
 </head>
+
 
 <body>
 
 <header class="topbar">
 
-  <div class="brand">مستر ملک چی</div>
+  <div class="brand">
+    مستر ملک چی
+  </div>
 
   <nav>
     <a href="#home">خانه</a>
@@ -95,7 +149,8 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
 
 <main>
 
-<!-- صفحه اصلی -->
+
+<!-- ===== صفحه اصلی ===== -->
 
 <section id="home" class="hero">
 
@@ -117,16 +172,15 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
 
     <div class="actions">
 
-      <a class="btn primary"
-         href="tel:09940485573">
-         تماس با من
+      <a class="btn primary" href="tel:09940485573">
+        تماس با من
       </a>
 
       <a class="btn outline"
          href="https://instagram.com/mr_melkchi"
          target="_blank"
          rel="noopener">
-         اینستاگرام
+        اینستاگرام
       </a>
 
     </div>
@@ -144,22 +198,23 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
 </section>
 
 
-<!-- ثبت فایل -->
+<!-- ===== ثبت فایل ===== -->
 
-<div style="text-align:center;margin:25px 0;">
+<div class="register-wrap">
 
   <a class="btn primary"
      href="https://docs.google.com/forms/d/1yiGjtiebyx-6Fol_RrDeldW7CQ_tPEbvP3cRIUtbS_w/viewform"
-     target="_blank">
+     target="_blank"
+     rel="noopener">
 
-     ثبت فایل جدید
+    ثبت فایل جدید
 
   </a>
 
 </div>
 
 
-<!-- خدمات -->
+<!-- ===== خدمات ===== -->
 
 <section id="services" class="section">
 
@@ -167,31 +222,47 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
 
     <span>خدمات</span>
 
-    <h2>کنار شما برای یک معامله بهتر</h2>
+    <h2>
+      کنار شما برای یک معامله بهتر
+    </h2>
 
   </div>
 
 
   <div class="cards">
 
-    <article class="card">
 
-      <div class="icon">🏠</div>
+    <!-- خرید و فروش -->
 
-      <h3>خرید و فروش</h3>
+    <a href="#buy-sale"
+       class="card sale-card">
+
+      <div class="icon">
+        🏠
+      </div>
+
+      <h3>
+        خرید و فروش
+      </h3>
 
       <p>
-        مشاوره و معرفی فایل‌های مناسب برای خرید و فروش ملک.
+        مشاهده فایل‌های جدید خرید و فروش ملک
       </p>
 
-    </article>
+    </a>
 
+
+    <!-- رهن و اجاره -->
 
     <article class="card">
 
-      <div class="icon">🔑</div>
+      <div class="icon">
+        🔑
+      </div>
 
-      <h3>رهن و اجاره</h3>
+      <h3>
+        رهن و اجاره
+      </h3>
 
       <p>
         پیدا کردن گزینه‌های مناسب برای رهن و اجاره در لاهیجان.
@@ -200,11 +271,17 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
     </article>
 
 
+    <!-- مشاوره -->
+
     <article class="card">
 
-      <div class="icon">🤝</div>
+      <div class="icon">
+        🤝
+      </div>
 
-      <h3>مشاوره ملکی</h3>
+      <h3>
+        مشاوره ملکی
+      </h3>
 
       <p>
         همراهی و راهنمایی برای تصمیم‌گیری بهتر در معاملات ملکی.
@@ -212,22 +289,27 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
 
     </article>
 
+
   </div>
 
 </section>
 
 
-<!-- ========================= -->
-<!-- فایل‌های خرید و فروش -->
-<!-- ========================= -->
+<!-- ================================= -->
+<!-- ===== فایل های خرید و فروش ===== -->
+<!-- ================================= -->
 
 <section id="buy-sale" class="section">
 
   <div class="section-head">
 
-    <span>فایل‌های ملکی</span>
+    <span>
+      فایل‌های ملکی
+    </span>
 
-    <h2>خرید و فروش</h2>
+    <h2>
+      خرید و فروش
+    </h2>
 
   </div>
 
@@ -244,10 +326,9 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
 </section>
 
 
-<!-- درباره من -->
+<!-- ===== درباره من ===== -->
 
-<section id="about"
-         class="about section">
+<section id="about" class="about section">
 
   <div>
 
@@ -283,8 +364,9 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
     <p>
       📷
       <a href="https://instagram.com/mr_melkchi"
-         target="_blank">
-         @mr_melkchi
+         target="_blank"
+         rel="noopener">
+        @mr_melkchi
       </a>
     </p>
 
@@ -293,10 +375,9 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
 </section>
 
 
-<!-- تماس -->
+<!-- ===== تماس ===== -->
 
-<section id="contact"
-         class="cta">
+<section id="contact" class="cta">
 
   <h2>
     دنبال ملک هستید؟
@@ -309,11 +390,12 @@ content="مستر ملک چی، مشاور املاک در لاهیجان؛ خر
   <a class="btn primary"
      href="tel:09940485573">
 
-     تماس با 09940485573
+    تماس با 09940485573
 
   </a>
 
 </section>
+
 
 </main>
 
@@ -337,44 +419,74 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbw9EvcIQPirP0uvNUHJbQKtWEs1UEYLopycKT9RHIc5iRChDF38cvATVTDUuq4y8HRMXQ/exec";
 
 
-async function loadProperties(){
+async function loadProperties() {
 
   const box =
-  document.getElementById("property-list");
+    document.getElementById("property-list");
 
 
-  try{
+  try {
 
     const response =
-    await fetch(API_URL);
+      await fetch(API_URL);
 
 
     const data =
-    await response.json();
+      await response.json();
 
 
     box.innerHTML = "";
 
 
-    if(!data || data.length === 0){
+    /*
+      فقط فایل های خرید و فروش
+    */
+
+    const properties =
+      data.filter(item => {
+
+        const type =
+          String(item["نوع معامله"] || "")
+          .trim()
+          .toLowerCase();
+
+        return (
+          type.includes("خرید") ||
+          type.includes("فروش")
+        );
+
+      });
+
+
+    if (properties.length === 0) {
 
       box.innerHTML =
-      "<p>فعلاً فایلی ثبت نشده است.</p>";
+        "<p class='loading'>فعلاً فایل خرید و فروشی ثبت نشده است.</p>";
 
       return;
 
     }
 
 
-    data.reverse().forEach(item => {
+    /*
+      جدیدترین فایل اول
+    */
+
+    properties.reverse();
+
+
+    properties.forEach(item => {
 
 
       const card =
-      document.createElement("article");
+        document.createElement("article");
+
 
       card.className =
-      "property-card";
+        "property-card";
 
+
+      /* ===== امکانات ===== */
 
       let features = "";
 
@@ -393,48 +505,57 @@ async function loadProperties(){
       featureNames.forEach(name => {
 
         const value =
-        item[name];
+          String(item[name] || "").trim();
 
-        if(value){
+
+        if (
+          value &&
+          value !== "خیر" &&
+          value !== "No" &&
+          value !== "false"
+        ) {
 
           features +=
-          `<span class="feature">✓ ${name}</span>`;
+            `<span class="feature">✓ ${name}</span>`;
 
         }
 
       });
 
 
+      /* ===== عکس ها ===== */
+
       let images = "";
 
 
       const imageField =
-      item["عکس های ملک"] ||
-      item["عکس‌های ملک"] ||
-      item["عکس های ملک "] ||
-      "";
+        item["عکس های ملک"] ||
+        item["عکس‌های ملک"] ||
+        item["عکس های ملک "] ||
+        "";
 
 
-      if(imageField){
+      if (imageField) {
 
         const links =
-        String(imageField)
-        .split(/,\s*|\n/);
+          String(imageField)
+          .split(/\s*,\s*|\n+/);
 
 
         links.forEach(link => {
 
-          link =
-          link.trim();
+          link = link.trim();
 
 
-          if(link.startsWith("http")){
+          if (link.startsWith("http")) {
 
-            images +=
-            `<img src="${link}"
-                  alt="${item["نوع ملک"] || "ملک"}"
-                  loading="lazy"
-                  onerror="this.style.display='none'">`;
+            images += `
+              <img
+                src="${link}"
+                alt="${item["نوع ملک"] || "ملک"}"
+                loading="lazy"
+                onerror="this.style.display='none'">
+            `;
 
           }
 
@@ -443,13 +564,60 @@ async function loadProperties(){
       }
 
 
+      /* ===== قیمت ===== */
+
+      let prices = "";
+
+
+      if (item["قیمت فروش"]) {
+
+        prices += `
+          <p class="property-price">
+            💰 قیمت فروش:
+            ${item["قیمت فروش"]}
+          </p>
+        `;
+
+      }
+
+
+      if (item["مبلغ رهن"]) {
+
+        prices += `
+          <p class="property-price">
+            🔑 مبلغ رهن:
+            ${item["مبلغ رهن"]}
+          </p>
+        `;
+
+      }
+
+
+      if (item["اجاره ماهانه"]) {
+
+        prices += `
+          <p class="property-price">
+            💵 اجاره ماهانه:
+            ${item["اجاره ماهانه"]}
+          </p>
+        `;
+
+      }
+
+
+      /* ===== ساخت کارت ===== */
+
       card.innerHTML = `
 
-        ${images ? `
-        <div class="property-images">
-          ${images}
-        </div>
-        ` : ""}
+        ${
+          images
+          ? `
+            <div class="property-images">
+              ${images}
+            </div>
+          `
+          : ""
+        }
 
 
         <h3>
@@ -471,8 +639,7 @@ async function loadProperties(){
 
         <p>
           📐 متراژ:
-          ${item["متراژ"] || "-"}
-          متر
+          ${item["متراژ"] || "-"} متر
         </p>
 
 
@@ -494,60 +661,39 @@ async function loadProperties(){
         </p>
 
 
-        ${
-          item["قیمت فروش"]
-          ? `<p class="property-price">
-               💰 قیمت فروش:
-               ${item["قیمت فروش"]}
-             </p>`
-          : ""
-        }
-
-
-        ${
-          item["مبلغ رهن"]
-          ? `<p class="property-price">
-               🔑 مبلغ رهن:
-               ${item["مبلغ رهن"]}
-             </p>`
-          : ""
-        }
-
-
-        ${
-          item["اجاره ماهانه"]
-          ? `<p class="property-price">
-               💵 اجاره ماهانه:
-               ${item["اجاره ماهانه"]}
-             </p>`
-          : ""
-        }
+        ${prices}
 
 
         ${
           features
-          ? `<div class="property-features">
-               ${features}
-             </div>`
+          ? `
+            <div class="property-features">
+              ${features}
+            </div>
+          `
           : ""
         }
 
 
         ${
           item["آدرس"]
-          ? `<p>
-               📌 آدرس:
-               ${item["آدرس"]}
-             </p>`
+          ? `
+            <p>
+              📌 آدرس:
+              ${item["آدرس"]}
+            </p>
+          `
           : ""
         }
 
 
         ${
           item["توضیحات ملک"]
-          ? `<p>
-               📝 ${item["توضیحات ملک"]}
-             </p>`
+          ? `
+            <p>
+              📝 ${item["توضیحات ملک"]}
+            </p>
+          `
           : ""
         }
 
@@ -559,12 +705,15 @@ async function loadProperties(){
     });
 
 
-  }catch(error){
+  } catch (error) {
 
     console.error(error);
 
-    box.innerHTML =
-    "<p>خطا در دریافت فایل‌ها.</p>";
+    box.innerHTML = `
+      <p class="loading">
+        خطا در دریافت فایل‌ها.
+      </p>
+    `;
 
   }
 
