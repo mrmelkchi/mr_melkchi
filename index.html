@@ -103,7 +103,68 @@
     تماس با 09940485573
   </a>
 </section>
+<section id="files" class="section">
+  <div class="section-head">
+    <span>فایل‌های جدید</span>
+    <h2>فایل‌های ثبت‌شده</h2>
+  </div>
 
+  <div id="property-list" class="cards">
+    <p>در حال دریافت فایل‌ها...</p>
+  </div>
+</section>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbw9EvcIQPirP0uvNUHJbQKtWEs1UEYLopycKT9RHIc5iRChDF38cvATVTDUuq4y8HRMXQ/exec";
+
+async function loadProperties() {
+  const box = document.getElementById("property-list");
+
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    box.innerHTML = "";
+
+    data.reverse().forEach(item => {
+
+      const card = document.createElement("article");
+      card.className = "card";
+
+      card.innerHTML = `
+        <h3>${item["نوع ملک"] || "ملک"}</h3>
+
+        <p>🏷 نوع معامله: ${item["نوع معامله"] || "-"}</p>
+        <p>📍 محدوده: ${item["محدوده"] || "-"}</p>
+        <p>📐 متراژ: ${item["متراژ"] || "-"} متر</p>
+        <p>🛏 تعداد خواب: ${item["تعداد خواب"] || "-"}</p>
+        <p>🏗 سال ساخت: ${item["سال ساخت"] || "-"}</p>
+        <p>🏢 طبقه: ${item["طبقه"] || "-"}</p>
+
+        <p>💰 قیمت فروش: ${item["قیمت فروش"] || "-"}</p>
+        <p>🔑 رهن: ${item["مبلغ رهن"] || "-"}</p>
+        <p>💵 اجاره ماهانه: ${item["اجاره ماهانه"] || "-"}</p>
+
+        <p>📌 آدرس: ${item["آدرس"] || "-"}</p>
+
+        <p>${item["توضیحات ملک"] || ""}</p>
+
+        <a class="btn primary"
+           href="tel:${item["شماره تماس مالک"] || "09940485573"}">
+           تماس برای این فایل
+        </a>
+      `;
+
+      box.appendChild(card);
+    });
+
+  } catch (error) {
+    box.innerHTML = "<p>خطا در دریافت فایل‌ها</p>";
+  }
+}
+
+loadProperties();
+</script>
 </main>
 
 <footer>
