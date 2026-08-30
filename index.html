@@ -1,58 +1,115 @@
-<!-- این بخش را داخل index.html، قبل از </main> قرار بده -->
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مستر ملک چی | مشاور املاک لاهیجان</title>
+<meta name="description" content="مستر ملک چی، مشاور املاک در لاهیجان؛ خرید، فروش و اجاره ملک.">
+<link rel="stylesheet" href="style.css">
+</head>
 
-<section id="files" class="section">
-  <div class="section-head">
-    <span>فایل‌های جدید</span>
-    <h2>آخرین فایل‌های ثبت‌شده</h2>
+<body>
+
+<header class="topbar">
+  <div class="brand">مستر ملک چی</div>
+  <nav>
+    <a href="#home">خانه</a>
+    <a href="#services">خدمات</a>
+    <a href="#about">درباره من</a>
+    <a href="#contact">تماس</a>
+  </nav>
+</header>
+
+<main>
+
+<section id="home" class="hero">
+  <div class="hero-text">
+    <span class="eyebrow">مشاور املاک در لاهیجان</span>
+    <h1>ملک مناسب شما،<br><strong>با انتخابی مطمئن</strong></h1>
+    <p>همراه شما برای خرید، فروش و اجاره ملک در لاهیجان.</p>
+
+    <div class="actions">
+      <a class="btn primary" href="tel:09940485573">تماس با من</a>
+      <a class="btn outline" href="https://instagram.com/mr_melkchi" target="_blank" rel="noopener">اینستاگرام</a>
+    </div>
   </div>
 
-  <div id="property-list" class="cards">
-    <p>در حال دریافت فایل‌ها...</p>
+  <div class="portrait-wrap">
+    <img src="sajjad.jpg" alt="سجاد خیری - مشاور املاک">
   </div>
 </section>
 
-<script>
-const SHEET_URL = "YOUR_PUBLIC_SHEET_URL";
+<div style="text-align:center;margin:25px 0;">
+  <a class="btn primary"
+     href="https://docs.google.com/forms/d/1yiGjtiebyx-6Fol_RrDeldW7CQ_tPEbvP3cRIUtbS_w/viewform"
+     target="_blank">
+    ثبت فایل جدید
+  </a>
+</div>
 
-async function loadProperties() {
-  const box = document.getElementById("property-list");
+<section id="services" class="section">
+  <div class="section-head">
+    <span>خدمات</span>
+    <h2>کنار شما برای یک معامله بهتر</h2>
+  </div>
 
-  try {
-    const response = await fetch(SHEET_URL);
-    const data = await response.json();
+  <div class="cards">
 
-    box.innerHTML = "";
+    <article class="card">
+      <div class="icon">🏠</div>
+      <h3>خرید و فروش</h3>
+      <p>مشاوره و معرفی فایل‌های مناسب برای خرید و فروش ملک.</p>
+    </article>
 
-    data.forEach(item => {
-      const card = document.createElement("article");
-      card.className = "card";
+    <article class="card">
+      <div class="icon">🔑</div>
+      <h3>رهن و اجاره</h3>
+      <p>پیدا کردن گزینه‌های مناسب برای رهن و اجاره در لاهیجان.</p>
+    </article>
 
-      card.innerHTML = `
-        <h3>${item["نوع ملک"] || ""}</h3>
-        <p><strong>نوع معامله:</strong> ${item["نوع معامله"] || ""}</p>
-        <p><strong>محدوده:</strong> ${item["محدوده"] || ""}</p>
-        <p><strong>متراژ:</strong> ${item["متراژ"] || ""}</p>
-        <p><strong>خواب:</strong> ${item["تعداد خواب"] || ""}</p>
-        <p><strong>سال ساخت:</strong> ${item["سال ساخت"] || ""}</p>
-        <p><strong>طبقه:</strong> ${item["طبقه"] || ""}</p>
-        <p><strong>قیمت فروش:</strong> ${item["قیمت فروش"] || ""}</p>
-        <p><strong>رهن:</strong> ${item["مبلغ رهن"] || ""}</p>
-        <p><strong>اجاره:</strong> ${item["اجاره ماهانه"] || ""}</p>
-        <p><strong>آدرس:</strong> ${item["آدرس"] || ""}</p>
-        <p>${item["توضیحات ملک"] || ""}</p>
-        <a class="btn primary"
-           href="tel:${item["شماره تماس مالک"] || "09940485573"}">
-           تماس
-        </a>
-      `;
+    <article class="card">
+      <div class="icon">🤝</div>
+      <h3>مشاوره ملکی</h3>
+      <p>همراهی و راهنمایی برای تصمیم‌گیری بهتر در معاملات ملکی.</p>
+    </article>
 
-      box.appendChild(card);
-    });
+  </div>
+</section>
 
-  } catch (error) {
-    box.innerHTML = "<p>فعلاً فایلی برای نمایش وجود ندارد.</p>";
-  }
-}
+<section id="about" class="about section">
 
-loadProperties();
-</script>
+  <div>
+    <span class="gold">درباره من</span>
+    <h2>سجاد خیری</h2>
+    <p>
+      مشاور املاک در لاهیجان؛ با تمرکز بر معرفی فایل‌های مناسب
+      و همراهی مشتری تا رسیدن به انتخاب درست.
+    </p>
+  </div>
+
+  <div class="contact-box">
+    <p>📍 لاهیجان</p>
+    <p>📞 <a href="tel:09940485573">09940485573</a></p>
+    <p>📷 <a href="https://instagram.com/mr_melkchi" target="_blank">@mr_melkchi</a></p>
+  </div>
+
+</section>
+
+<section id="contact" class="cta">
+  <h2>دنبال ملک هستید؟</h2>
+  <p>برای دریافت مشاوره و فایل‌های جدید با من در تماس باشید.</p>
+
+  <a class="btn primary" href="tel:09940485573">
+    تماس با 09940485573
+  </a>
+</section>
+
+</main>
+
+<footer>
+  <strong>مستر ملک چی</strong>
+  <span>مشاور املاک | لاهیجان</span>
+</footer>
+
+</body>
+</html>
