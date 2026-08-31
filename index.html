@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* ===== فایل های ملکی ===== */
-
 .property-list {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -73,9 +71,11 @@
 
 .property-images img {
   width:100%;
-  height:160px;
+  height:190px;
   object-fit:cover;
   display:block;
+  border-radius:0;
+  background:#222;
 }
 
 .loading {
@@ -83,8 +83,6 @@
   text-align:center;
   padding:30px;
 }
-
-/* کارت خرید و فروش قابل کلیک */
 
 .sale-card {
   cursor:pointer;
@@ -98,14 +96,10 @@
   transform:translateY(-4px);
 }
 
-/* دکمه ثبت فایل */
-
 .register-wrap {
   text-align:center;
   margin:25px 0;
 }
-
-/* موبایل */
 
 @media(max-width:600px) {
 
@@ -122,12 +116,11 @@
   }
 
   .property-images img {
-    height:140px;
+    height:180px;
   }
 }
 </style>
 </head>
-
 
 <body>
 
@@ -146,11 +139,7 @@
 
 </header>
 
-
 <main>
-
-
-<!-- ===== صفحه اصلی ===== -->
 
 <section id="home" class="hero">
 
@@ -187,7 +176,6 @@
 
   </div>
 
-
   <div class="portrait-wrap">
 
     <img src="sajjad.jpg"
@@ -198,7 +186,7 @@
 </section>
 
 
-<!-- ===== ثبت فایل ===== -->
+<!-- ثبت فایل -->
 
 <div class="register-wrap">
 
@@ -214,7 +202,7 @@
 </div>
 
 
-<!-- ===== خدمات ===== -->
+<!-- خدمات -->
 
 <section id="services" class="section">
 
@@ -228,18 +216,11 @@
 
   </div>
 
-
   <div class="cards">
 
+    <a href="#buy-sale" class="card sale-card">
 
-    <!-- خرید و فروش -->
-
-    <a href="#buy-sale"
-       class="card sale-card">
-
-      <div class="icon">
-        🏠
-      </div>
+      <div class="icon">🏠</div>
 
       <h3>
         خرید و فروش
@@ -251,14 +232,9 @@
 
     </a>
 
-
-    <!-- رهن و اجاره -->
-
     <article class="card">
 
-      <div class="icon">
-        🔑
-      </div>
+      <div class="icon">🔑</div>
 
       <h3>
         رهن و اجاره
@@ -270,14 +246,9 @@
 
     </article>
 
-
-    <!-- مشاوره -->
-
     <article class="card">
 
-      <div class="icon">
-        🤝
-      </div>
+      <div class="icon">🤝</div>
 
       <h3>
         مشاوره ملکی
@@ -289,15 +260,12 @@
 
     </article>
 
-
   </div>
 
 </section>
 
 
-<!-- ================================= -->
-<!-- ===== فایل های خرید و فروش ===== -->
-<!-- ================================= -->
+<!-- فایل های خرید و فروش -->
 
 <section id="buy-sale" class="section">
 
@@ -313,9 +281,7 @@
 
   </div>
 
-
-  <div id="property-list"
-       class="property-list">
+  <div id="property-list" class="property-list">
 
     <div class="loading">
       در حال دریافت فایل‌ها...
@@ -326,7 +292,7 @@
 </section>
 
 
-<!-- ===== درباره من ===== -->
+<!-- درباره من -->
 
 <section id="about" class="about section">
 
@@ -346,7 +312,6 @@
     </p>
 
   </div>
-
 
   <div class="contact-box">
 
@@ -375,7 +340,7 @@
 </section>
 
 
-<!-- ===== تماس ===== -->
+<!-- تماس -->
 
 <section id="contact" class="cta">
 
@@ -395,7 +360,6 @@
   </a>
 
 </section>
-
 
 </main>
 
@@ -419,28 +383,144 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbw9EvcIQPirP0uvNUHJbQKtWEs1UEYLopycKT9RHIc5iRChDF38cvATVTDUuq4y8HRMXQ/exec";
 
 
+/* =========================================
+   تبدیل لینک Google Drive به لینک نمایش عکس
+========================================= */
+
+function convertDriveImageUrl(url) {
+
+  if (!url) return "";
+
+  url = String(url).trim();
+
+  let fileId = "";
+
+  /* لینک معمولی:
+     https://drive.google.com/file/d/FILE_ID/view
+  */
+
+  let match = url.match(/\/file\/d\/([^\/]+)/);
+
+  if (match) {
+    fileId = match[1];
+  }
+
+  /* لینک:
+     https://drive.google.com/open?id=FILE_ID
+  */
+
+  if (!fileId) {
+
+    match = url.match(/[?&]id=([^&]+)/);
+
+    if (match) {
+      fileId = match[1];
+    }
+
+  }
+
+  /* لینک:
+     https://drive.google.com/uc?id=FILE_ID
+  */
+
+  if (!fileId) {
+
+    match = url.match(/\/uc\?id=([^&]+)/);
+
+    if (match) {
+      fileId = match[1];
+    }
+
+  }
+
+  if (fileId) {
+
+    return "https://drive.google.com/thumbnail?id=" +
+           encodeURIComponent(fileId) +
+           "&sz=w1200";
+
+  }
+
+  return url;
+}
+
+
+/* =========================================
+   جدا کردن عکس‌ها
+========================================= */
+
+function getImageLinks(imageField) {
+
+  if (!imageField) return [];
+
+  const text = String(imageField).trim();
+
+  /*
+    بعضی وقت‌ها Google Forms چند لینک را
+    با کاما یا خط جدید برمی‌گرداند.
+  */
+
+  const parts = text.split(/\s*,\s*|\n+|\r+/);
+
+  const results = [];
+
+  parts.forEach(part => {
+
+    let link = part.trim();
+
+    if (!link) return;
+
+    /*
+      اگر متن اضافه کنار لینک وجود داشت،
+      فقط خود لینک را پیدا می‌کنیم.
+    */
+
+    const urlMatch =
+      link.match(/https?:\/\/[^\s]+/);
+
+    if (urlMatch) {
+      link = urlMatch[0];
+    }
+
+    if (link.startsWith("http")) {
+
+      results.push(
+        convertDriveImageUrl(link)
+      );
+
+    }
+
+  });
+
+  return results;
+}
+
+
+/* =========================================
+   دریافت فایل‌ها
+========================================= */
+
 async function loadProperties() {
 
   const box =
     document.getElementById("property-list");
-
 
   try {
 
     const response =
       await fetch(API_URL);
 
+    if (!response.ok) {
+      throw new Error("API Error");
+    }
 
     const data =
       await response.json();
 
-
     box.innerHTML = "";
 
 
-    /*
-      فقط فایل های خرید و فروش
-    */
+    /* فقط خرید و فروش */
 
     const properties =
       data.filter(item => {
@@ -468,28 +548,25 @@ async function loadProperties() {
     }
 
 
-    /*
-      جدیدترین فایل اول
-    */
+    /* جدیدترین فایل اول */
 
     properties.reverse();
 
 
     properties.forEach(item => {
 
-
       const card =
         document.createElement("article");
-
 
       card.className =
         "property-card";
 
 
-      /* ===== امکانات ===== */
+      /* =================================
+         امکانات
+      ================================= */
 
       let features = "";
-
 
       const featureNames = [
         "پارکینگ",
@@ -501,12 +578,10 @@ async function loadProperties() {
         "سند"
       ];
 
-
       featureNames.forEach(name => {
 
         const value =
           String(item[name] || "").trim();
-
 
         if (
           value &&
@@ -523,48 +598,41 @@ async function loadProperties() {
       });
 
 
-      /* ===== عکس ها ===== */
+      /* =================================
+         عکس‌ها
+      ================================= */
 
       let images = "";
-
 
       const imageField =
         item["عکس های ملک"] ||
         item["عکس‌های ملک"] ||
         item["عکس های ملک "] ||
+        item["عکس ملک"] ||
+        item["عکس"] ||
         "";
 
 
-      if (imageField) {
-
-        const links =
-          String(imageField)
-          .split(/\s*,\s*|\n+/);
+      const imageLinks =
+        getImageLinks(imageField);
 
 
-        links.forEach(link => {
+      imageLinks.forEach(link => {
 
-          link = link.trim();
+        images += `
+          <img
+            src="${link}"
+            alt="${item["نوع ملک"] || "ملک"}"
+            loading="lazy"
+            onerror="this.style.display='none'">
+        `;
 
-
-          if (link.startsWith("http")) {
-
-            images += `
-              <img
-                src="${link}"
-                alt="${item["نوع ملک"] || "ملک"}"
-                loading="lazy"
-                onerror="this.style.display='none'">
-            `;
-
-          }
-
-        });
-
-      }
+      });
 
 
-      /* ===== قیمت ===== */
+      /* =================================
+         قیمت
+      ================================= */
 
       let prices = "";
 
@@ -605,7 +673,9 @@ async function loadProperties() {
       }
 
 
-      /* ===== ساخت کارت ===== */
+      /* =================================
+         ساخت کارت
+      ================================= */
 
       card.innerHTML = `
 
@@ -619,50 +689,41 @@ async function loadProperties() {
           : ""
         }
 
-
         <h3>
           ${item["نوع ملک"] || "ملک"}
         </h3>
-
 
         <p>
           🏷️ نوع معامله:
           ${item["نوع معامله"] || "-"}
         </p>
 
-
         <p>
           📍 محدوده:
           ${item["محدوده"] || "-"}
         </p>
-
 
         <p>
           📐 متراژ:
           ${item["متراژ"] || "-"} متر
         </p>
 
-
         <p>
           🛏️ تعداد خواب:
           ${item["تعداد خواب"] || "-"}
         </p>
-
 
         <p>
           🏗️ سال ساخت:
           ${item["سال ساخت"] || "-"}
         </p>
 
-
         <p>
           🏢 طبقه:
           ${item["طبقه"] || "-"}
         </p>
 
-
         ${prices}
-
 
         ${
           features
@@ -674,7 +735,6 @@ async function loadProperties() {
           : ""
         }
 
-
         ${
           item["آدرس"]
           ? `
@@ -685,7 +745,6 @@ async function loadProperties() {
           `
           : ""
         }
-
 
         ${
           item["توضیحات ملک"]
